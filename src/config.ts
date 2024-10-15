@@ -1,12 +1,12 @@
 import type { SocialObjects } from "@/lib/types";
 
 export const SITE = {
-  website: "https://hyperoot.dev", // replace this with your deployed domain
-  author: "HYP3R00T",
+  website: "https://handbook.pitviper.com", // replace this with your deployed domain
+  author: "Dan & Mik",
   desc: "Documentation template using Astro and Shadcn",
-  title: "CelestialDocs",
+  title: "Pit Viper Handbook",
   ogImage: "og-image.jpg",
-  repo: "https://github.com/HYP3R00T/CelestialDocs",
+  repo: "https://github.com/DanGrund/pv-handbook",
 };
 
 export const LOCALE = {
@@ -51,7 +51,7 @@ export const Socials: SocialObjects = [
     name: "Github",
     href: "https://github.com/HYP3R00T/",
     linkTitle: ` ${SITE.title} on Github`,
-    active: true,
+    active: false,
   },
   {
     name: "Facebook",
@@ -75,7 +75,7 @@ export const Socials: SocialObjects = [
     name: "Mail",
     href: "mailto:rajesh@hyperoot.dev",
     linkTitle: `Send an email to ${SITE.title}`,
-    active: true,
+    active: false,
   },
   {
     name: "Twitter",
@@ -141,6 +141,6 @@ export const Socials: SocialObjects = [
     name: "Mastodon",
     href: "https://mastodon.social/@hyp3r00t",
     linkTitle: `${SITE.title} on Mastodon`,
-    active: true,
+    active: false,
   },
 ];
