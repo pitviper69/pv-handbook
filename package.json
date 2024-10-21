@@ -1,15 +1,8 @@
 {
-  "name": "celestialdocs",
+  "name": "pv_handbook",
   "type": "module",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "description": "Documentation template using AstroJS and Shadcn",
-  "author": "Hyperoot <rajesh@hyperoot.dev>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/HYP3R00T/CelestialDocs"
-  },
-  "homepage": "https://celestialdocs.hyperoot.dev/",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -17,12 +10,6 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "keywords": [
-    "docs",
-    "documentation",
-    "astro",
-    "withastro"
-  ],
   "dependencies": {
     "@astrojs/check": "^0.8.2",
     "@astrojs/mdx": "^3.1.3",
@@ -31,6 +18,8 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/jetbrains-mono": "^5.0.21",
     "@fontsource-variable/montserrat": "^5.0.19",
+    "@netlify/blobs": "^8.1.0",
+    "@netlify/functions": "^2.8.2",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-icons": "^1.3.0",
