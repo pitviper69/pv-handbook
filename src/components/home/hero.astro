@@ -2,7 +2,10 @@
 const { class: className } = Astro.props;
 import { Image } from "astro:assets";
 import { Button } from "@/components/ui/button";
+import { SignIn, SignOut } from 'auth-astro/components'
 import KittyAstronaut from "../../assets/KittyAstronaut.svg";
+import { getSession } from 'auth-astro/server';
+const session = await getSession(Astro.request);
 ---
 
 <div
@@ -11,25 +14,25 @@ import KittyAstronaut from "../../assets/KittyAstronaut.svg";
     className,
   ]}
 >
-  <div class="flex flex-col-reverse md:flex-row">
-    <div
-      class="flex flex-col gap-4 md:w-1/2 p-8 justify-center items-center md:items-start"
-    >
-      <h1
-        class="text-pretty text-center md:text-left md:text-4xl lg:text-5xl tracking-wide"
-      >
-        Elevate Your Documentation with a <i class="text-primary">Celestial</i> Touch
+  <div class="flex flex-col-reverse">
+    <!--<div class="flex flex-col gap-4 md:w-1/2 p-8 justify-center items-center">-->
+      <h1 class="text-pretty text-center md:text-4xl lg:text-5xl tracking-wide">
+        {
+          session ? (
+              <SignOut class="text-primary">
+                Sign Out
+              </SignOut>
+          ) : (
+              <SignIn provider="google" class="text-primary">
+                Sign In
+              </SignIn>
+          )
+        }
       </h1>
-      <a href="/getting-started" class="py-4">
-        <Button size="lg" className="rounded-lg">
-          <h4 class="text-lg">Get started</h4>
-        </Button>
-      </a>
-    </div>
-    <!--TODO: figure out absolute paths for deploying with assets folder -->
-    <div class="hidden md:flex w-1/2 justify-center align-middle">
-      <Image src={KittyAstronaut} alt="404" />
-    </div>
+    <!--</div>-->
+    <!--<div class="hidden md:flex w-1/2 justify-center align-middle">-->
+    <!--  <Image src={KittyAstronaut} alt="404" />-->
+    <!--</div>-->
   </div>
 </div>
 
