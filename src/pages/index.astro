@@ -1,11 +1,14 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/home/hero.astro";
+import { getSession } from 'auth-astro/server';
+const session = await getSession(Astro.request);
+
+if(session) {
+  return Astro.redirect("/getting-started");
+}
 ---
 
-<BaseLayout
-  title="CelestialDocs"
-  description="This template helps you build Documentation with Astro, Tailwind CSS, and Shadcn UI."
->
+<BaseLayout title="PV Handbook" description="For All Things Pit Viper">
   <Hero />
 </BaseLayout>

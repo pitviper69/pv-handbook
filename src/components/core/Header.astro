@@ -3,14 +3,17 @@ import { ModeToggle } from "@/components/core/ModeToggle";
 import HamNavMenu from "@/components/core/HamNavMenu.astro";
 import NavMenu from "@/components/core/NavMenu.astro";
 import { Search } from "@/components/core/Search";
-
 import { Button } from "@/components/ui/button";
-
 import { docconfig, SITE } from "@/config";
 import { Github } from "lucide-react";
 
 // To pass the tailwindcss classes to the astro component
 const { class: className } = Astro.props;
+import { SignIn, SignOut } from 'auth-astro/components'
+
+import { getSession } from 'auth-astro/server';
+const session = await getSession(Astro.request);
+
 ---
 
 <header
@@ -30,7 +33,7 @@ const { class: className } = Astro.props;
           variant="link"
         >
           <img src="/Fangs-Logo-HD.webp" alt="Logo" class="w-[4rem] h-[2rem]" />
-          {SITE.title}
+          <!--{SITE.title}-->
         </Button>
       </a>
       <a href="/" class="px-4 flex md:hidden">
@@ -44,24 +47,27 @@ const { class: className } = Astro.props;
     </div>
 
     <div class="flex flex-row gap-2 md:px-8">
-      {!docconfig.hide_search && <Search client:only="react" />}
       {
-        !docconfig.hide_repo_button && (
-          <a href={SITE.repo} target="_blank">
-            <Button client:load className="" variant="ghost" size="icon">
-              <Github className="w-[1.2rem] h-[1.2rem]" />
-            </Button>
-          </a>
+        session && (
+            <>
+              {!docconfig.hide_search && <Search client:only="react" />}
+              <div class="md:hidden flex flex-row-reverse gap-4">
+                <HamNavMenu />
+                <ModeToggle client:load transition:persist />
+              </div>
+
+              <div class="flex-row gap-4 hidden md:flex">
+                <ModeToggle client:load transition:persist />
+              </div>
+              <div class="flex-row gap-4 hidden md:flex self-center">
+                Hi {session.user?.name}
+              </div>
+              <SignOut class="text-primary rounded-lg px-2">
+                  Sign Out
+              </SignOut>
+            </>
         )
       }
-      <div class="md:hidden flex flex-row-reverse gap-4">
-        <HamNavMenu />
-        <ModeToggle client:load transition:persist />
-      </div>
-
-      <div class="flex-row gap-4 hidden md:flex">
-        <ModeToggle client:load transition:persist />
-      </div>
     </div>
   </div>
 </header>

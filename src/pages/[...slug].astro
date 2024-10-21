@@ -1,6 +1,8 @@
 ---
 import { type CollectionEntry, getCollection, getEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
+import { getSession } from 'auth-astro/server';
+const session = await getSession(Astro.request);
 
 import DocsLayout from "@/layouts/DocsLayout.astro";
 
@@ -21,6 +23,10 @@ try {
 
 if (entry.data.draft) {
   return Astro.redirect("/404");
+}
+
+if(!session) {
+  return Astro.redirect("/");
 }
 
 const { Content, headings } = await entry.render();

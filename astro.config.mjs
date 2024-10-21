@@ -5,6 +5,7 @@ import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 
 import netlify from "@astrojs/netlify";
+import auth from "auth-astro";
 // https://astro.build/config
 export default defineConfig({
   site: "https://celestial.hyperoot.dev",
@@ -36,6 +37,7 @@ export default defineConfig({
     mdx({
       gfm: true,
     }),
+    auth()
   ],
   output: "server",
   adapter: netlify(),
