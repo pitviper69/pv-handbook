@@ -45,7 +45,7 @@ const session = await getSession(Astro.request);
             <>
               {!docconfig.hide_search && <Search client:only="react" />}
               <div class="flex-row gap-8 flex">
-                <!--<ModeToggle client:load transition:persist />-->
+                <ModeToggle client:only transition:persist />
               </div>
               <div class="flex-row gap-8 hidden md:flex self-center">
                 Hi {session.user?.name}
@@ -60,7 +60,6 @@ const session = await getSession(Astro.request);
 </header>
 
 <script is:inline>
-    // TODO the theme override nonsense is here; the theme toggle is here, fuck.
   function setDarkMode(document) {
     const getThemePreference = () => {
       if (
@@ -73,17 +72,17 @@ const session = await getSession(Astro.request);
         ? "dark"
         : "pvLight";
     };
-    const isDark = getThemePreference() === "dark";
-    // document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
     if (typeof localStorage !== "undefined") {
       const observer = new MutationObserver(() => {
-        const isDark = document.documentElement.classList.contains("dark");
-        localStorage.setItem("theme", isDark ? "dark" : "pvLight");
+          const theme = document.documentElement.getAttribute('data-theme');
+          const savedTheme = localStorage.getItem("theme");
+          if (theme !== savedTheme) {
+              document.documentElement.setAttribute('data-theme', savedTheme);
+          }
       });
       observer.observe(document.documentElement, {
         attributes: true,
-        attributeFilter: ["class"],
+        attributeFilter: ["data-theme"],
       });
     }
   }

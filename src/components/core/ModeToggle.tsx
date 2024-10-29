@@ -19,19 +19,15 @@ export function ModeToggle() {
   };
 
   React.useEffect(()=> {
-    console.log('load');
     const localTheme= window.localStorage.getItem("theme") || "pvLight";
-    console.log(localTheme);
-    setTheme(localTheme);
+    if(localTheme !== theme) {
+      setTheme(localTheme);
+    }
   },[]);
 
   React.useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-
-
-  const handleToggle = (e: any) => e.target.checked ? setTheme("dark") : setTheme("pvLight");
-
 
   return (
     <label className="swap swap-rotate">
