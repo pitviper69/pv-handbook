@@ -21,6 +21,7 @@ export function ModeToggle() {
   React.useEffect(()=> {
     const localTheme= window.localStorage.getItem("theme") || "pvLight";
     if(localTheme !== theme) {
+      // @ts-ignore
       setTheme(localTheme);
     }
   },[]);
