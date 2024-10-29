@@ -1,12 +1,15 @@
 ---
-title: Authoring Content in Markdown
+title: Authoring Content in Markdown or MDX
 ---
 
-CelestialDocs supports the full range of Markdown syntax in `.md` files as well as frontmatter YAML to define metadata such as a tilte and description. 
+This supports the full range of Markdown syntax in  `.md` files as well as frontmatter YAML to define metadata such as a title and description.
+It also supports [MDX](https://mdxjs.com/) files, which extend Markdown by allowing the inclusion of React components within your content.
+This enables dynamic and interactive documentation. We specifically use [GitHub flavored markdown (GFM)](https://mdxjs.com/guides/gfm/).
+
 
 ## Frontmatter
 
-You can modify individual pages in CelestialDocs by setting values in their fromtmatter. Frontmetter is set at the top of your files between `---` separators.
+You can modify individual pages in these docs by setting values in their frontmatter. Frontmatter is set at the top of your files between `---` separators.
 
 ```md
 ---
@@ -16,7 +19,7 @@ title: Sample
 Page content goes here, after `---`.
 ```
 
-Every page must include at least a `title`. See the [frontmatter reference](/reference/frontmatter-ref) for all available fields and how to add custom fields. 
+Every page must include at least a `title`. See the [frontmatter reference](/web/frontmatter-ref) for all available fields and how to add custom fields.
 
 ## Inline styles
 
@@ -26,10 +29,10 @@ Text can be **bold**, _italic_ or ~~strikethrough~~.
 Text can be **bold**, _italic_ or ~~strikethrough~~.
 ```
 
-You can [link to another page](/getting-started).
+You can [link to another page](/home).
 
 ```md
-You can [link to another page](/getting-started).
+You can [link to another page](/home).
 ```
 
 You can highlight `inline code` with backticks. 
@@ -40,7 +43,7 @@ You can highlight `inline code` with backticks.
 
 ## Images
 
-Images in CelestialDocs use [Astro's built-in optimized asset support](https://docs.astro.build/en/guides/images/).
+Images in these Docs use [Astro's built-in optimized asset support](https://docs.astro.build/en/guides/images/).
 
 Markdown and MDX support the Markdown syntax for displaying images that includes alt-text for screen readers and assistive technology.
 
@@ -62,17 +65,18 @@ Relative image paths are also supported for images stored locally in your projec
 
 You can structure content using a heading. Headings in Markdown are indicated by a number of # at the start of the line.
 
-### How to structure page content in CelestialDocs
+### How to structure page content
 
-CelestialDocs is configured to automatically use your page title as a top-level heading and will include an “Overview” heading at top of each page's table of contents. We recommend starting each page with regular paragraph text content and using on-page headings from `<h2>` and down:
+Docs are configured to automatically use your page title as a top-level heading and will include an “Overview” heading
+at top of each page's table of contents. We recommend starting each page with regular paragraph text content and using on-page headings from `<h2>` and down:
 
 ```md
 ---
 title: Markdown Guide
-description: How to use Markdown in CelestialDocs
+description: How to use Markdown
 ---
 
-This page describes how to use Markdown in CelestialDocs.
+This page describes how to use Markdown.
 
 ## Inline Styles
 
@@ -86,7 +90,7 @@ Using headings in Markdown will automatically give you anchor links so you can l
 ```
 ---
 title: My page of content
-description: How to use CelestialDocs's built-in anchor links
+description: How to use docs's built-in anchor links
 ---
 
 ## Introduction
@@ -163,4 +167,103 @@ The [Andromeda constellation](<https://en.wikipedia.org/wiki/Andromeda_(constell
 
 ## Other common Markdown features
 
-CelestialDocs supports all other Markdown authoring syntax, such as lists and tables. See the [Markdown Cheat Sheet from The Markdown Guide](https://www.markdownguide.org/cheat-sheet/) for a quick overview of all the Markdown syntax elements.
+These docs support all other Markdown authoring syntax, such as lists and tables.
+See the [Markdown Cheat Sheet from The Markdown Guide](https://www.markdownguide.org/cheat-sheet/) for a quick overview of all the Markdown syntax elements.
+
+----
+----
+
+# MDX
+
+## Using a component
+
+You can use a component by importing it into your MDX file and then rendering it as a JSX tag. These look like HTML tags but start with an uppercase letter matching the name in your import statement:
+
+```mdx
+---
+title: Welcome to my docs
+---
+
+import Callout from "@/components/Callout.astro";
+
+<Callout variant="info">
+Sample callout
+</Callout>
+```
+See the [components](/guides/components) for all custom components and their available fields.
+
+
+### Task Lists
+
+You can create task lists using GFM syntax.
+
+- [x] Task 1
+- [ ] Task 2
+- [ ] Task 3
+
+```md
+- [x] Task 1
+- [ ] Task 2
+- [ ] Task 3
+```
+
+### Tables
+
+You can also create tables using GFM.
+
+| Syntax    | Description |
+| --------- | ----------- |
+| Header    | Title       |
+| Paragraph | Text        |
+
+```md
+| Syntax    | Description |
+| --------- | ----------- |
+| Header    | Title       |
+| Paragraph | Text        |
+```
+### Strikethrough
+
+Strikethrough text can be created using double tilde `~~`.
+
+This is ~~strikethrough~~ text.
+
+```md
+This is ~~strikethrough~~ text.
+```
+
+
+## Using JavaScript Expressions
+
+MDX allows you to use JavaScript expressions within your content. This can be useful for dynamic content and calculations.
+
+Current year: {new Date().getFullYear()}
+
+```mdx
+Current year: {new Date().getFullYear()}
+```
+
+
+```mdx
+**Fibonacci Sequence**
+
+The first 10 numbers in the Fibonacci sequence are:
+
+{
+  Array.from({ length: 10 }).map((_, i) => (
+    <span key={i}>{fibonacci(i)} </span>
+  ))
+}
+```
+
+## Syntax Highlighting
+
+MDX supports syntax highlighting for code blocks using backticks. You can specify the language for proper highlighting.
+
+````mdx
+```jsx
+const MyComponent = () => {
+  return <div>Hello, MDX!</div>;
+};
+```
+````

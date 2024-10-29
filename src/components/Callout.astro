@@ -21,12 +21,12 @@ interface Props {
 const { variant, title, icon: CustomIcon } = Astro.props as Props;
 
 const variantClasses: Record<Variant, string> = {
-  info: "border-Blue bg-Blue bg-base-300 hover:bg-Blue cursor-default",
+  info: "border-primary bg-primary bg-base-300 hover:bg-primary-content hover:text-secondary cursor-default",
   warning:
-    "border-Orange bg-Orange bg-base-300 hover:bg-Orange cursor-default",
-  danger: "bg-error bg-Red bg-base-300 hover:bg-Red cursor-default",
+    "border-warning bg-warning bg-base-300 hover:bg-warning cursor-default",
+  danger: "border-error bg-error bg-base-300 hover:bg-error cursor-default",
   success:
-    "border-Green bg-success bg-base-300 hover:bg-success cursor-default",
+    "border-success bg-success bg-base-300 hover:bg-success cursor-default",
 };
 
 const variantIcons: Record<Variant, LucideIcon> = {
