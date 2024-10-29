@@ -14,12 +14,9 @@ const slug: string = Astro.url.pathname;
 
 // Build the breadcrumb trail
 const breadcrumbs: BreadcrumbsProps = buildBreadcrumbs(slug || "");
-
-// To pass the tailwindcss classes to the astro component
-const { class: className } = Astro.props;
 ---
 
-<div class:list={className}>
+<div>
   <Breadcrumb>
     <BreadcrumbList className="m-0">
       {

@@ -22,8 +22,8 @@ const {
 } = Astro.props as MainContentProps;
 ---
 
-<div class="bg-background pt-4 px-6 min-h-static_sidemenu">
-  {!docconfig.hide_breadcrumbs && !hide_breadcrumbs && <Breadcrumbs class="" />}
+<div class="bg-base-300 pt-4 px-6 min-h-static_sidemenu">
+  {!docconfig.hide_breadcrumbs && !hide_breadcrumbs && <Breadcrumbs />}
   <h1 class="pb-2 italic">{capitalizeFirstLetter(title)}</h1>
   {
     !docconfig.hide_datetime && pubDatetime && (

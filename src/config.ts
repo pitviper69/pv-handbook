@@ -5,7 +5,7 @@ export const SITE = {
   author: "Dan & Mik",
   desc: "Documentation template using Astro and Shadcn",
   title: "Pit Viper Handbook",
-  ogImage: "og-image.jpg",
+  ogImage: "og-image.png",
   repo: "https://github.com/DanGrund/pv-handbook",
 };
 

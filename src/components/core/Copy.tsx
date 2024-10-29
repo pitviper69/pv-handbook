@@ -12,7 +12,7 @@ export function Copy() {
 
         let copyButton = document.createElement("button");
         copyButton.className =
-          "absolute right-1 top-1 rounded px-2 py-1 text-xs leading-4 focus:outline-none bg-popover opacity-0 transition-opacity duration-300";
+          "absolute right-1 top-1 rounded px-2 py-1 text-xs leading-4 focus:outline-none bg-base-200 opacity-0 transition-opacity duration-300";
         copyButton.innerHTML = copyButtonLabel;
 
         // Add hover effect to show the button
