@@ -1,0 +1,205 @@
+---
+title: Components
+---
+import Callout from "@/components/Callout.astro";
+import Card from '@/components/Card.astro';
+import { Cat } from 'lucide-react';
+
+Components let you easily reuse a piece of UI or styling consistently. Examples might include a link card or a YouTube
+embed. CelestialDocs supports the use of components in [MDX](https://mdxjs.com/) files and provides some common components for you to use.
+
+## Callout
+
+The `Callout` component is designed to highlight important information, warnings, errors, or successes in your
+application. It is a versatile alert box with customizable variants and titles.
+
+<Callout>
+  See below for all custom props and their usages.
+</Callout>
+
+
+### Props
+
+- **`variant`**
+
+Type: `string`
+
+Default: "info"
+
+Options: `"info" | "warning" | "danger" | "success"`
+
+Description: Defines the type of alert to display. The variant determines the color, icon, and default title of the alert.
+
+- **`title`**
+
+Type: `string`
+
+Default: Default titles based on the variant
+
+Description: Custom title for the alert. If not provided, the default title for the specified variant will be used.
+
+- **`icon`**
+
+Type: `LucideIcon` (optional)
+
+Default: Default icon based on the variant
+
+Description: A custom icon to use in the alert. If not provided, the default icon for the specified variant will be used. You can look for icons at [lucide.dev](https://lucide.dev/icons/).
+
+### Basic Usage
+To use the Callout component, import it and use it in your Astro files with the desired variant and title.
+
+
+<Callout variant="info">
+    This is an info message.
+</Callout>
+
+<Callout variant="warning" title="Custom Warning Title">
+    This is a warning message with a custom title.
+</Callout>
+
+<Callout variant="danger" icon={Cat}>
+    This is a danger message with a custom icon.
+</Callout>
+
+<Callout variant="success" title="Custom Success Title" icon={Cat}>
+    This is a success message with a custom title and custom icon.
+</Callout>
+
+```mdx
+import Callout from '@/components/Callout.astro';
+import { Cat } from 'lucide-react';
+
+<Callout variant="info">
+  This is an info message.
+</Callout>
+
+<Callout variant="warning" title="Custom Warning Title">
+  This is a warning message with a custom title.
+</Callout>
+
+<Callout variant="danger" icon={Cat}>
+  This is a danger message with a custom icon.
+</Callout>
+
+<Callout variant="success" title="Custom Success Title" icon={Cat}>
+  This is a success message with a custom title and custom icon.
+</Callout>
+```
+
+### Default Behavior
+
+If no variant is provided, the info variant will be used by default. Similarly, if no title is provided, the default title for the specified variant will be used.
+
+<Callout>
+    This is an info message using the default settings.
+</Callout>
+
+```astro
+---
+import Callout from '@/components/Callout.astro';
+---
+
+<!-- Using default info variant and title -->
+<Callout>
+  This is an info message using the default settings.
+</Callout>
+```
+
+## Card
+
+You can display content in a box matching CelestialDocs' styles using the `<Card>` component.
+
+<Card title="Card with Custom Icon and Color" icon={Cat} color="info">
+  This is a card with a custom icon and color.
+</Card>
+
+
+### Props
+
+- **`title`**
+
+Type: `string`
+
+Description: The title text to display in the card.
+
+- **`icon`**
+
+Type: `LucideIcon` (optional)
+
+Default: `Terminal`
+
+Description: A custom icon to display in the card. If not provided, the default `Terminal` icon will be used. You can look for icons at [lucide.dev](https://lucide.dev/icons/).
+
+- **`color`**
+
+Type: `string` (optional)
+
+Default: `"primary"`
+
+Options:
+  <span class="bg-info bg-base-300 p-1 border rounded text-sm font-semibold">"info"</span>
+  <span class="bg-info-content bg-base-300 p-1 border rounded text-sm font-semibold">"info-content"</span>
+  <span class="bg-error-content bg-base-300 p-1 border rounded text-sm font-semibold">"error-content"</span>
+  <span class="bg-error bg-base-300 p-1 border rounded text-sm font-semibold">"error"</span>
+  <span class="bg-warning bg-base-300 p-1 border rounded text-sm font-semibold">"warning"</span>
+  <span class="bg-success bg-base-300 p-1 border rounded text-sm font-semibold">"success"</span>
+  <span class="bg-secondary bg-base-300 p-1 border rounded text-sm font-semibold">"secondary"</span>
+  <span class="bg-neutral bg-base-300 p-1 border rounded text-sm font-semibold">"neutral"</span>
+  <span class="bg-neutral-content bg-base-300 p-1 border rounded text-sm font-semibold">"neutral-content"</span>
+
+Description: The background color for the card. This is used for both the card's background and the button's hover state. If not provided, the default color is <span class="bg-primary bg-base-300 p-1 border rounded text-sm font-semibold">"primary"</span>.
+
+### Basic Usage
+
+To use the Card component, import it and use it in your Astro files with the desired title, optional custom icon, and color.
+
+<Card title="Default Card">
+    This is a card with default settings.
+</Card>
+
+<Card title="Card with Custom Icon" icon={Cat}>
+    This is a card with a custom icon.
+</Card>
+
+<Card title="Card with Custom Icon and Color" icon={Cat} color={"error"}>
+    This is a card with a custom icon and color.
+</Card>
+
+<Card title="Card with Custom Color" color="warning">
+    This is a card with a custom color.
+</Card>
+
+```mdx
+import Card from '@/components/Card.astro';
+import { Cat } from 'lucide-react';
+
+<Card title="Default Card">
+  This is a card with default settings.
+</Card>
+
+<Card title="Card with Custom Icon" icon={Cat}>
+  This is a card with a custom icon.
+</Card>
+
+<Card title="Card with Custom Icon and Color" icon={Cat} color="info">
+  This is a card with a custom icon and color.
+</Card>
+
+<Card title="Card with Custom Color" color="Green">
+  This is a card with a custom color.
+</Card>
+```
+
+### Default Behavior
+
+If no `icon` is provided, the `Terminal` icon will be used by default. Similarly, if no `color` is provided, the default color will be `"primary"`.
+
+```mdx
+import Card from '@/components/Card.astro';
+
+<Card title="Default Card">
+  This is a card with default settings.
+</Card>
+```
+

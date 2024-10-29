@@ -5,7 +5,7 @@ import { getSession } from 'auth-astro/server';
 const session = await getSession(Astro.request);
 
 if(session) {
-  return Astro.redirect("/getting-started");
+  return Astro.redirect("/home");
 }
 ---
 
