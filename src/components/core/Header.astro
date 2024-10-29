@@ -45,7 +45,7 @@ const session = await getSession(Astro.request);
             <>
               {!docconfig.hide_search && <Search client:only="react" />}
               <div class="flex-row gap-8 flex">
-                <ModeToggle client:only transition:persist />
+                <!--<ModeToggle client:only transition:persist />-->
               </div>
               <div class="flex-row gap-8 hidden md:flex self-center">
                 Hi {session.user?.name}
