@@ -18,7 +18,7 @@ const { title, icon: Icon = Terminal, color = "primary" } = Astro.props;
     <Button
       size="icon"
       variant="outline"
-      className={`bg-${color} text-background hover:bg-${color} hover:text-background cursor-default bg-opacity-50 border-${color}`}
+      className={`bg-${color} bg-base-300 hover:bg-${color} hover:bg-base-300 cursor-default bg-opacity-50 border-${color}`}
     >
       <Icon className="w-[1.2rem] h-[1.2rem]" />
     </Button>
@@ -26,7 +26,7 @@ const { title, icon: Icon = Terminal, color = "primary" } = Astro.props;
       {title}
     </h4>
   </div>
-  <div class="text-muted-foreground">
+  <div class="bg-neutral">
     <slot />
   </div>
 </div>

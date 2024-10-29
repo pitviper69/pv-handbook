@@ -32,21 +32,21 @@ const pathname_part: string = pathname.split("/")[1];
 </div>
 
 <div
-  class="menu-overlay z-[100] w-screen h-screen absolute top-0 left-0 px-6 py-4 bg-background flex flex-col"
+  class="menu-overlay z-[100] w-screen h-screen absolute top-0 left-0 px-6 py-4 bg-base-300 flex flex-col"
 >
   <div onclick="closeMenu()" class="flex justify-end">
     <Button variant={"ghost"} size="icon" client:load>
       <X className="h-[1.2rem] w-[1.2rem]" />
     </Button>
   </div>
-  <ScrollArea className=" w-full h-dynamic_hscreen mb-4" client:only="react">
+  <ScrollArea className=" w-50 h-dynamic_hscreen mb-4" client:only="react">
     <div class="mt-6 flex flex-col items-start px-6">
       {
         menu_items.map((item) => (
           <a href={item.href}>
             <Button
               variant="link"
-              className=`${"/" + pathname_part === "/" + item.href.split("/")[1] ? "underline" : ""} text-foreground`
+              className=`${"/" + pathname_part === "/" + item.href.split("/")[1] ? "underline" : ""} text-info-content`
               key={item.href}
             >
               {item.title}

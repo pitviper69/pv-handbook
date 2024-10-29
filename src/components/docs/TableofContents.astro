@@ -16,10 +16,10 @@ const { class: className } = Astro.props;
       <h2 class="text-xl border-none italic">On This Page</h2>
       <ul class="list-none m-0">
         {toc.map((heading) => (
-          <li class=`${heading.depth === 2 ? "font-semibold" : "text-muted-foreground"}`>
+          <li class=`${heading.depth !== 2 ? "font-semibold" : "bg-neutral"}`>
             <a href={`#${heading.slug}`} class="text-sm w-full leading-none no-underline">
               {heading.text}
-              </a>
+            </a>
           </li>
         ))}
       </ul>

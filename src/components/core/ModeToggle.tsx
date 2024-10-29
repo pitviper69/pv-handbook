@@ -11,45 +11,38 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 
 export function ModeToggle() {
-  const [theme, setThemeState] = React.useState<
-    "theme-light" | "dark" | "system"
-  >("theme-light");
+  const [theme, setTheme] = React.useState<"pvLight" | "dark">("pvLight");
+
+  const toggleTheme = () => {
+    localStorage.setItem("theme", theme === "pvLight" ? "dark" : "pvLight");
+    setTheme(theme === 'dark' ? 'pvLight' : 'dark');
+  };
+
+  React.useEffect(()=> {
+    console.log('load');
+    const localTheme= window.localStorage.getItem("theme") || "pvLight";
+    console.log(localTheme);
+    setTheme(localTheme);
+  },[]);
 
   React.useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setThemeState(isDarkMode ? "dark" : "theme-light");
-  }, []);
-
-  React.useEffect(() => {
-    const isDark =
-      theme === "dark" ||
-      (theme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+
+  const handleToggle = (e: any) => e.target.checked ? setTheme("dark") : setTheme("pvLight");
+
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <div className="min-w-[1.2rem]">
-          <Button variant="ghost" size="icon">
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setThemeState("theme-light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <label className="swap swap-rotate">
+      <input type="checkbox" onChange={toggleTheme} checked={theme==="dark"} />
+      <Sun className="swap-off" />
+      <Moon className="swap-on" />
+    </label>
   );
 }
+//
+//
+// const [theme, setTheme] = React.useState(themeFromLocalStorage);
+//
+// setTheme(theme === "light" ? "dark" : "light");

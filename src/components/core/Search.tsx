@@ -113,7 +113,7 @@ export function Search() {
                     <ul className="list-none m-0">
                       {results.map(({ item, refIndex }) => (
                         <li
-                          className=" px-4 m-0 py-2 flex flex-row items-center hover:rounded text-foreground bg-background hover:text-primary-foreground hover:bg-primary"
+                          className=" px-4 m-0 py-2 flex flex-row items-center hover:rounded text-foreground bg-base-300 hover:text-primary-foreground hover:bg-primary"
                           key={refIndex}
                         >
                           <a

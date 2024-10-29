@@ -1,7 +1,6 @@
 ---
 import HeadSEO from "@/components/core/HeadSEO.astro";
 import Header from "@/components/core/Header.astro";
-import Footer from "@/components/core/Footer.astro";
 
 import type { BaseLayoutProps } from "@/lib/types";
 import { capitalizeFirstLetter } from "@/lib/utils";
@@ -12,7 +11,7 @@ const { title, description, ogImage } = Astro.props as BaseLayoutProps;
 ---
 
 <!doctype html>
-<html lang=`${LOCALE.lang ?? "en"}` class="scroll-smooth">
+<html lang=`${LOCALE.lang ?? "en"}` class="scroll-smooth" data-theme="pvLight">
   <head>
     <HeadSEO
       title=`${title ? capitalizeFirstLetter(title) : SITE.title}`
@@ -20,12 +19,10 @@ const { title, description, ogImage } = Astro.props as BaseLayoutProps;
       ogImage={ogImage}
     />
   </head>
-  <body class="bg-background text-foreground font-sans">
-    <div class="flex flex-col min-h-screen">
-      <Header class="bg-background" />
-      <main class="flex flex-1 flex-col justify-center items-center px-4">
-        <slot />
-      </main>
-    </div>
+  <body>
+    <Header />
+    <main class="flex flex-1 flex-col justify-center items-center px-4 bg-base-200 h-screen">
+      <slot />
+    </main>
   </body>
 </html>

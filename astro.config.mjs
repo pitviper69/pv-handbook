@@ -8,17 +8,8 @@ import netlify from "@astrojs/netlify";
 import auth from "auth-astro";
 // https://astro.build/config
 export default defineConfig({
-  site: "https://celestial.hyperoot.dev",
   markdown: {
     smartypants: true,
-    syntaxHighlight: "shiki",
-    shikiConfig: {
-      // theme: "catppuccin-mocha",
-      themes: {
-        light: "catppuccin-latte",
-        dark: "catppuccin-macchiato",
-      },
-    },
     rehypePlugins: [
       [
         rehypeExternalLinks,
@@ -31,9 +22,7 @@ export default defineConfig({
   },
   integrations: [
     react(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
+    tailwind(),
     mdx({
       gfm: true,
     }),
