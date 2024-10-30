@@ -18,17 +18,17 @@ export function ModeToggle() {
     setTheme(theme === 'dark' ? 'pvLight' : 'dark');
   };
 
-  React.useEffect(()=> {
-    const localTheme= window.localStorage.getItem("theme") || "pvLight";
-    if(localTheme !== theme) {
-      // @ts-ignore
-      setTheme(localTheme);
-    }
-  },[]);
-
-  React.useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  // React.useEffect(()=> {
+  //   const localTheme= window.localStorage.getItem("theme") || "pvLight";
+  //   if(localTheme !== theme) {
+  //     // @ts-ignore
+  //     setTheme(localTheme);
+  //   }
+  // },[]);
+  //
+  // React.useEffect(() => {
+  //   document.documentElement.setAttribute('data-theme', theme);
+  // }, [theme]);
 
   return (
     <label className="swap swap-rotate">
@@ -38,8 +38,3 @@ export function ModeToggle() {
     </label>
   );
 }
-//
-//
-// const [theme, setTheme] = React.useState(themeFromLocalStorage);
-//
-// setTheme(theme === "light" ? "dark" : "light");
