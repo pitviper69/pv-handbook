@@ -5,7 +5,7 @@ hide_breadcrumbs: true
 
 [shopify customer segment api reference](https://docs.quickreply.ai/segments-guide/customer-segments/customer-segment-filters#products-purchased)
 
-## Creating Bulk Imports for Sales
+## Scheduling Sales Pricing
 
 1. Open Matrixify from Shopify Apps Menu
 2. Create an export for products with the following columns, and whatever additional filters you need, e.g.
@@ -16,18 +16,19 @@ contains specific tag, etc.
 3. Save this export with the store name prefixed and the date, e.g. `USA_presaleExport_20241106`
 4. Open the export in excel/sheets
 5. immediately `save as` with a different title, you'll want to retain the original export file. For example, save as `USA_VeteransDay40off`
-6. delete rows where inventory = 0
-7. delete rows where published = false
-8. delete rows where product = SavedBy Package Protection
-9. delete rows where product = Gift Card
-10. delete rows where product = Nosepiece 2000+
-11. create temporary column labeled `Variant Compare At Price` with formula
+6. Delete rows where inventory = 0
+7. Delete rows where published = false
+8. Delete rows where product = SavedBy Package Protection
+9. Delete rows where product = Gift Card
+10. Delete rows where product = Nosepiece 2000+
+11. Create temporary column labeled `Variant Compare At Price` with formula
 `=IF(ISBLANK(Old Compare-At Price Column), Old Variant Price, Old Compare-At Price)`
 12. create temporary column labeled `Variant Price` with formula
 `=IF(ISBLANK(Old Compare-At Price), Old Variant Price * 0.6, Old Variant Price)`
-13. Delete the old `Variant Compare At Price` and `Variant Price` Columns
-14. delete `tags`, `tags command`, `variant qty` `status`, `published` columns (to avoid accidentally overwriting any changes made between product export and scheduled import)
-15. Save the spreadsheet (duh I know but we all fuck this up)
-16. Back in matrixify, click add file in the import tab at the top and select the sale spreadsheet
-17. Open the `Options` drawer, and select the `schedule on` checkbox. Be sure to note the expected import time and import with a buffer before the scheduled sale time.
-18. repeat the import scheduling with the pre-sale pricing for whenever the sale ends.
+13. Select these two columns, Copy, then Paste Special-Values Only over the same columns.
+14. Delete the old `Variant Compare At Price` and `Variant Price` Columns
+15. Delete `tags`, `tags command`, `variant qty` `status`, `published` columns (to avoid accidentally overwriting any changes made between product export and scheduled import)
+16. Save the spreadsheet (duh I know but we all fuck this up)
+17. Back in matrixify, click add file in the import tab at the top and select the sale spreadsheet
+18. Open the `Options` drawer, and select the `schedule on` checkbox. Be sure to note the expected import time and import with a buffer before the scheduled sale time.
+19. Repeat the import scheduling with the pre-sale pricing for whenever the sale ends.
