@@ -23,8 +23,8 @@ contains specific tag, etc.
 10. Delete rows where product = Nosepiece 2000+
 11. Create temporary column labeled `Variant Compare At Price` with formula
 `=IF(ISBLANK(Old Compare-At Price Column), Old Variant Price, Old Compare-At Price)`
-12. create temporary column labeled `Variant Price` with formula
-`=IF(ISBLANK(Old Compare-At Price), Old Variant Price * 0.6, Old Variant Price)`
+12. create temporary column labeled `Variant Price` with formula (substitute actual percentage off for the .5)
+`=IF(ISBLANK(Old Compare-At Price), Old Variant Price * .5, Old Variant Price)`
 13. Select these two columns, Copy, then Paste Special-Values Only over the same columns.
 14. Delete the old `Variant Compare At Price` and `Variant Price` Columns
 15. Delete `tags`, `tags command`, `variant qty` `status`, `published` columns (to avoid accidentally overwriting any changes made between product export and scheduled import)
